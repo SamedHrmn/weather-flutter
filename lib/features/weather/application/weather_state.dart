@@ -52,6 +52,7 @@ final class WeatherState {
 
     if (weatherModel?.daily?.temperature2MMin != null && weatherModel?.daily?.temperature2MMax != null) {
       final dayIndex = _getDayIndexByTimes(weatherModel?.daily?.time);
+      if (dayIndex == -1) return "";
 
       final temperature = unit == TemperatureUnit.c
           ? ((weatherModel!.daily!.temperature2MMin![dayIndex] + weatherModel!.daily!.temperature2MMax![dayIndex]) / 2)
