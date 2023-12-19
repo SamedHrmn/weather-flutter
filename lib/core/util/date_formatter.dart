@@ -16,15 +16,15 @@ extension DateTimeExtension on DateTime {
   }
 
   String formatTime() {
-    int _hour = hour;
+    int localHour = hour;
 
-    String ampm = _hour < 12 ? 'AM' : 'PM';
+    String ampm = localHour < 12 ? 'AM' : 'PM';
 
-    if (_hour > 12) {
-      _hour -= 12;
+    if (localHour > 12) {
+      localHour -= 12;
     }
 
-    String formattedHour = _hour.toString().padLeft(2, '0');
+    String formattedHour = localHour.toString().padLeft(2, '0');
     String formattedMinute = minute.toString().padLeft(2, '0');
 
     return '$formattedHour:$formattedMinute $ampm';

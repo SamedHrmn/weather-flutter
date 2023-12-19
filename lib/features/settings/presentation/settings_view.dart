@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:weather_flutter/core/components/base/empty_box.dart';
 import 'package:weather_flutter/core/enums/app_languages.dart';
 import 'package:weather_flutter/core/enums/localization_keys.dart';
 import 'package:weather_flutter/core/enums/temperature_unit.dart';
@@ -26,7 +27,7 @@ class SettingsView extends StatelessWidget {
             size: 24,
             weatherTextWeight: WeatherTextWeight.bold,
           ),
-          const SizedBox(height: 24),
+          const EmptyBox(height: 24),
           WeatherText(
             text: LocalizationKeys.settingsUnit.localKey.tr(context: context),
             size: 16,
@@ -43,7 +44,7 @@ class SettingsView extends StatelessWidget {
               );
             },
           ),
-          const SizedBox(height: 24),
+          const EmptyBox(height: 24),
           WeatherText(
             text: LocalizationKeys.settingsLanguage.localKey.tr(context: context),
             size: 16,

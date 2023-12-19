@@ -2,6 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:weather_flutter/core/components/custom/weather_navbar_button.dart';
+import 'package:weather_flutter/core/constants/color_constant.dart';
+import 'package:weather_flutter/core/enums/app_navbar_pages.dart';
+import 'package:weather_flutter/core/util/size_helper.dart';
 import 'package:weather_flutter/features/settings/application/settings_view_model.dart';
 import 'core/components/custom/weather_scaffold.dart';
 import 'core/util/navigator_util.dart';
@@ -38,6 +42,18 @@ class _AppViewState extends State<AppView> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    SizeHelper.init(context);
+  }
+
+  @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return WeatherScaffold(
       bottomSafe: false,
@@ -47,55 +63,90 @@ class _AppViewState extends State<AppView> {
             top: 0,
             left: 0,
             right: 0,
-            child: SizedBox(
-              height: kToolbarHeight,
-              child: ColoredBox(color: Colors.blue),
-            ),
+            child: _AppBar(),
           ),
           Positioned(
             left: 0,
             right: 0,
             bottom: 0,
-            child: Container(
-              width: double.maxFinite,
-              height: MediaQuery.of(context).viewPadding.bottom + kBottomNavigationBarHeight,
-              color: Colors.blue,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: IconButton(
-                      onPressed: () {
-                        pageController.jumpToPage(0);
-                      },
-                      icon: Icon(Icons.home),
-                    ),
-                  ),
-                  Expanded(
-                    child: IconButton(
-                      onPressed: () {
-                        pageController.jumpToPage(1);
-                      },
-                      icon: Icon(Icons.settings),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            child: _BottomNavBar(pageController: pageController),
           ),
           Positioned.fill(
             top: kTextTabBarHeight,
             bottom: MediaQuery.of(context).viewPadding.bottom + kBottomNavigationBarHeight,
-            child: PageView(
-              controller: pageController,
-              physics: const NeverScrollableScrollPhysics(),
-              children: const [
-                HomeView(),
-                SettingsView(),
-              ],
-            ),
+            child: _PageView(pageController: pageController),
           )
         ],
       ),
+    );
+  }
+}
+
+class _PageView extends StatelessWidget {
+  const _PageView({
+    required this.pageController,
+  });
+
+  final PageController pageController;
+
+  @override
+  Widget build(BuildContext context) {
+    return PageView(
+      controller: pageController,
+      physics: const NeverScrollableScrollPhysics(),
+      children: const [
+        HomeView(),
+        SettingsView(),
+      ],
+    );
+  }
+}
+
+class _BottomNavBar extends StatelessWidget {
+  const _BottomNavBar({
+    required this.pageController,
+  });
+
+  final PageController pageController;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.maxFinite,
+      height: MediaQuery.of(context).viewPadding.bottom + kBottomNavigationBarHeight,
+      color: ColorConstant.primaryColor,
+      child: Row(
+        children: [
+          Expanded(
+            child: WeatherNavbarButton(
+              page: AppNavbarPages.home,
+              onPressed: () {
+                pageController.jumpToPage(AppNavbarPages.home.index);
+              },
+            ),
+          ),
+          Expanded(
+            child: WeatherNavbarButton(
+              page: AppNavbarPages.settings,
+              onPressed: () {
+                pageController.jumpToPage(AppNavbarPages.settings.index);
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _AppBar extends StatelessWidget {
+  const _AppBar();
+
+  @override
+  Widget build(BuildContext context) {
+    return const SizedBox(
+      height: kToolbarHeight,
+      child: ColoredBox(color: ColorConstant.primaryColor),
     );
   }
 }
