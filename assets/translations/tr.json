@@ -1,0 +1,38 @@
+{
+    "home": {
+        "hourlyWeather": "Saatlik Hava Durumu",
+        "dailyWeather": "Günlük Hava Durumu",
+        "now": "Şimdi",
+        "today": "Bugün"
+    },
+    "settings": {
+        "settings": "Ayarlar",
+        "unit": "Birim",
+        "lang": "Dil"
+    },
+    "wmos": {
+        "clearSky": "Açık",
+        "partlyCloud": "Parçalı Bulutlu",
+        "fog": "Sisli",
+        "drizzle": "Hafif Yağmurlu",
+        "rain": "Yağmurlu",
+        "freezingRain": "Yağmurlu",
+        "freezingDrizzle": "Hafif Yağmurlu",
+        "snowFall": "Karlı",
+        "snowGrains": "Karlı",
+        "rainShower": "Sağanak Yağmurlu",
+        "snowShowers": "Sağanak Karlı",
+        "thunderStorm": "Fırtına",
+        "unknown": "Bilinmiyor"
+    },
+    "days": {
+        "monday": "Pazartesi",
+        "tuesday": "Salı",
+        "wednesday": "Çarşamba",
+        "thursday": "Perşembe",
+        "friday": "Cuma",
+        "saturday": "Cumartesi",
+        "sunday": "Pazar",
+        "today": "Bugün"
+    }
+}

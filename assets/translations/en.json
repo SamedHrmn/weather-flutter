@@ -1,0 +1,38 @@
+{
+    "home": {
+        "hourlyWeather": "Hourly Weather",
+        "dailyWeather": "Daily Weather",
+        "now": "Now",
+        "today": "Today"
+    },
+    "settings": {
+        "settings": "Settings",
+        "unit": "Unit",
+        "lang": "Language"
+    },
+    "wmos": {
+        "clearSky": "Clear Sky",
+        "partlyCloud": "Partly Cloud",
+        "fog": "Fog",
+        "drizzle": "Drizzle",
+        "rain": "Rainy",
+        "freezingRain": "Rain",
+        "freezingDrizzle": "Freezing Drizzle",
+        "snowFall": "Snow Fall",
+        "snowGrains": "Snow Grains",
+        "rainShower": "Rain Shower",
+        "snowShowers": "Snow Showers",
+        "thunderStorm": "Thunderstorm",
+        "unknown": "Unknown"
+    },
+    "days": {
+        "monday": "Monday",
+        "tuesday": "Tuesday",
+        "wednesday": "Wednesday",
+        "thursday": "Thursday",
+        "friday": "Friday",
+        "saturday": "Saturday",
+        "sunday": "Sunday",
+        "today": "Today"
+    }
+}

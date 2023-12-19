@@ -1,0 +1,4 @@
+enum TemperatureUnit {
+  c,
+  f,
+}
