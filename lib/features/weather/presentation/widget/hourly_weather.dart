@@ -41,32 +41,27 @@ class _HourlyWeather extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 padding: EdgeInsets.symmetric(horizontal: SizeHelper.defaultPadding, vertical: SizeHelper.mediumPadding),
                 itemBuilder: (context, index) {
-                  return Material(
-                    elevation: 8,
-                    shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
-                    child: SizedBox(
-                      width: SizeHelper.blockSizeHorizontal * 30,
-                      child: Column(
-                        children: [
-                          const EmptyBox(height: 8),
-                          WeatherText(text: index == 0 ? LocalizationKeys.homeNow.localKey.tr(context: context) : hours[index].formatTime(), size: 12),
-                          Flexible(
-                            child: Image.asset(
-                              weatherViewModel.getWeatherIconFromWMO(
-                                weatherViewModel.hourlyWeatherState.getWMOCurrent(),
-                              ),
-                              height: SizeHelper.blockSizeHorizontal * 15,
-                              fit: BoxFit.cover,
+                  return WeatherCard(
+                    child: Column(
+                      children: [
+                        const EmptyBox(height: 8),
+                        WeatherText(text: index == 0 ? LocalizationKeys.homeNow.localKey.tr(context: context) : hours[index].formatTime(), size: 12),
+                        Flexible(
+                          child: Image.asset(
+                            weatherViewModel.getWeatherIconFromWMO(
+                              weatherViewModel.hourlyWeatherState.getWMOCurrent(),
                             ),
+                            height: SizeHelper.blockSizeHorizontal * 15,
+                            fit: BoxFit.cover,
                           ),
-                          const EmptyBox(height: 8),
-                          Consumer<SettingsViewModel>(
-                            builder: (context, settingsViewModel, _) =>
-                                WeatherText(text: weatherViewModel.hourlyWeatherState.getHourlyTemp(unit: settingsViewModel.temperatureUnit)[index], size: 12),
-                          ),
-                          const EmptyBox(height: 8),
-                        ],
-                      ),
+                        ),
+                        const EmptyBox(height: 8),
+                        Consumer<SettingsViewModel>(
+                          builder: (context, settingsViewModel, _) =>
+                              WeatherText(text: weatherViewModel.hourlyWeatherState.getHourlyTemp(unit: settingsViewModel.temperatureUnit)[index], size: 12),
+                        ),
+                        const EmptyBox(height: 8),
+                      ],
                     ),
                   );
                 },

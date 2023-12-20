@@ -34,27 +34,22 @@ class _DailyWeather extends StatelessWidget {
                   final days = weatherViewModel.dailyWeatherState.weatherModel!.daily!.time!;
                   final wmos = weatherViewModel.dailyWeatherState.weatherModel!.daily!.weatherCode!;
 
-                  return Material(
-                    elevation: 8,
-                    shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
-                    child: SizedBox(
-                      width: SizeHelper.blockSizeHorizontal * 30,
-                      child: Column(
-                        children: [
-                          const EmptyBox(height: 8),
-                          WeatherText(text: days[index].weekdayName(todayTextInclude: true)?.localKey.tr(context: context) ?? "", size: 12),
-                          Image.asset(
-                            weatherViewModel.getWeatherIconFromWMO(
-                              weatherViewModel.dailyWeatherState.getWMOCurrent(),
-                            ),
-                            height: SizeHelper.blockSizeHorizontal * 15,
-                            fit: BoxFit.cover,
+                  return WeatherCard(
+                    child: Column(
+                      children: [
+                        const EmptyBox(height: 8),
+                        WeatherText(text: days[index].weekdayName(todayTextInclude: true)?.localKey.tr(context: context) ?? "", size: 12),
+                        Image.asset(
+                          weatherViewModel.getWeatherIconFromWMO(
+                            weatherViewModel.dailyWeatherState.getWMOCurrent(),
                           ),
-                          const EmptyBox(height: 8),
-                          WeatherText(text: weatherViewModel.getWMOLocalKeys(WMOWeather.getWMOFromCode(wmos[index])).localKey.tr(context: context), size: 12),
-                          const EmptyBox(height: 8),
-                        ],
-                      ),
+                          height: SizeHelper.blockSizeHorizontal * 15,
+                          fit: BoxFit.cover,
+                        ),
+                        const EmptyBox(height: 8),
+                        WeatherText(text: weatherViewModel.getWMOLocalKeys(WMOWeather.getWMOFromCode(wmos[index])).localKey.tr(context: context), size: 12),
+                        const EmptyBox(height: 8),
+                      ],
                     ),
                   );
                 },
